@@ -3,7 +3,7 @@ Routes and views for the flask application.
 """
 import os
 
-from flask import Flask
+from flask import Flask, request
 from flask import render_template
 from time import time
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -37,22 +37,22 @@ def login():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    return render_template(
-        'signup.html',
-        title='Signup',
-        year=datetime.now().year
-    )
+    if request.method == 'POST':
+        try:
+            return request.data
+            u = User('fuckthisshitA', 1223231)
+            db.session.add(u)
+            db.session.commit()
 
-@app.route('/newUser', methods=['POST'])
-def newUser():
-    try:
-        u = User('fuckthisshitA', 1223231)
-        db.session.add(u)
-        db.session.commit()
-        return "L"
+        except Exception, e:
+            return str(e)
 
-    except Exception, e:
-        return str(e)
+    else:
+        return render_template(
+            'signup.html',
+            title='Signup',
+            year=datetime.now().year
+        )
 
 
 @app.route('/about')
