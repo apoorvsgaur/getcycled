@@ -1,14 +1,13 @@
 import os
 
+
+
 from flask import Flask
 from time import time
 from flask.ext.sqlalchemy import SQLAlchemy
 
-basedir = os.path.abspath(os.path.dirname(__file__))
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir,'UserData.db')
-db = SQLAlchemy(app)
+
 
 class User(db.Model):
 	name = db.Column(db.String(), primary_key=True)
@@ -23,4 +22,9 @@ class User(db.Model):
 		self.date = int(time())
 		self.numBottles = 0
 	def __repr__(self):
-		return '<User %r>' % self.name 
+		return '<User %r>' % self.name
+	def query_db(query, args=(), one=False):
+	    cur = db.execute(query, args)
+	    rv = [dict((cur.description[idx][0], value)
+	               for idx, value in enumerate(row)) for row in cur.fetchall()]
+	    return (rv[0] if rv else None) if one else rv
