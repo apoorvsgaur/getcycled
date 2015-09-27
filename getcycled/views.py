@@ -39,13 +39,13 @@ def login():
 def signup():
     if request.method == 'POST':
         try:
-            return request.data
-            u = User('fuckthisshitA', 1223231)
+            u = User(request.values.get("email"), request.values.get("password"))
             db.session.add(u)
             db.session.commit()
-
+            return "Account created."
+            
         except Exception, e:
-            return str(e)
+            return "Username already exists."
 
     else:
         return render_template(

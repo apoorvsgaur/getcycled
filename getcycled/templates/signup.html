@@ -9,7 +9,7 @@
             <h3>Sign Up</h3>
             <form>
 			  <div class="form-group">
-			    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+			    <input type="email" class="form-control" id="email" placeholder="Username">
 			  </div>
 			  <div class="form-group">
 			    <input type="password" class="form-control" id="password" placeholder="Pin">
@@ -17,6 +17,7 @@
 			  <div class="form-group">
 			    <input type="password" class="form-control" id="password_verify" placeholder="Pin Confirmation">
 			  </div>
+			  <p id='message' style='display:none;'></p>
 			  <button type="button" class="btn btn-success">Sign Up</button>
 			</form>
         </div>
@@ -28,8 +29,22 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('button').click(function() {
+			if($("#email").val() == '' || $("#password").val() == '' || $("#password_verify").val() == '') {
+				$("#message").show();
+				$("#message").text("Invalid information.");
+				return;
+			}
+			if($("#password").val() != $("#password_verify").val()) {
+				$("#message").show();
+				$("#message").text("Passwords don't match.");
+				return;
+			}
 
-			console.log("test");
+			$.post( "/signup", { email: $("#email").val(), password: $("#password").val() }, function(data) {
+				$("#message").show();
+				$("#message").text(data);
+				console.log(data);
+			});
 
 		});
 	});
