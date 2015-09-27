@@ -1,5 +1,5 @@
-from getcycled.FlaskWebProject import app, db
-from getcycled.FlaskWebProject.models import User
+from getcycled import app, db
+from getcycled.models import User
 from flask.ext.script import Manager, prompt_bool
 
 manager = Manager(app)
