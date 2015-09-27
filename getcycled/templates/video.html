@@ -4,7 +4,8 @@
 <div>
 <video id="video" width="640" height="480" autoplay></video>
 
-<button id="snap" class="btn btn-success">Snap Photo</button>
+<button id="snap" class="btn btn-default">Snap Photo</button>
+<button id="sendPhoto" class="btn btn-success">Send Photo</button>
 <canvas id="canvas" width="640" height="480"></canvas>
 
 <style type="text/css">
@@ -51,6 +52,18 @@
   });
   }, false);
 
+  </script>
+
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#sendPhoto').click(function() {
+          console.log(canvas.toDataURL('image/jpeg'));
+          $.post( "/video", { base64: canvas.toDataURL('image/jpeg') }, function(data) {
+            console.log(data);
+          });
+      });
+    });
   </script>
 </div>
 
