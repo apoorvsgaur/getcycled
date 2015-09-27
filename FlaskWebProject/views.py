@@ -8,8 +8,9 @@ from flask import render_template
 from time import time
 from flask.ext.sqlalchemy import SQLAlchemy
 from FlaskWebProject import app
-
 from datetime import datetime
+
+from Models import User
 
 
 
@@ -18,6 +19,8 @@ from datetime import datetime
 @app.route('/')
 @app.route('/home')
 def home():
+
+    
     return render_template(
         'index.html',
         title='Home',
@@ -33,7 +36,7 @@ def contact():
         message='Your contact page.'
     )
 
-@app.route('/signup')
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
     return render_template(
         'signup.html',
