@@ -9,16 +9,14 @@ from FlaskWebProject import app
 @app.route('/')
 @app.route('/home')
 def home():
-    """Renders the home page."""
     return render_template(
         'index.html',
         title='Home',
-        year=datetime.now().year,
+        year=datetime.now().year
     )
 
 @app.route('/contact')
 def contact():
-    """Renders the contact page."""
     return render_template(
         'contact.html',
         title='Contact',
@@ -26,9 +24,16 @@ def contact():
         message='Your contact page.'
     )
 
+@app.route('/signup')
+def signup():
+    return render_template(
+        'signup.html',
+        title='Signup',
+        year=datetime.now().year
+    )
+
 @app.route('/about')
 def about():
-    """Renders the about page."""
     return render_template(
         'about.html',
         title='About',

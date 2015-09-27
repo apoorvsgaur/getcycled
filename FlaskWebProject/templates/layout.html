@@ -8,44 +8,73 @@
 
     <title>{{ title }} - GetCycled</title>
 
-    <link rel="stylesheet" href="/static/content/css/bootstrap.min.css">   
-    <link rel="stylesheet" href="/static/content/css/todc-bootstrap.min.css">
+    <link rel="stylesheet" href="/static/content/bootstrap.min.css">   
+    <link rel="stylesheet" href="/static/content/todc-bootstrap.min.css">
+    <link rel="stylesheet/less" type="text/css" href="/static/content/site.less">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="/" class="navbar-brand">Application name</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('home') }}">Home</a></li>
-                    <li><a href="{{ url_for('about') }}">About</a></li>
-                    <li><a href="{{ url_for('contact') }}">Contact</a></li>
+
+    <div id="masthead">
+        <div class="container" style="height: 100%;position: relative;">
+            
+            <div id="mobile_nav">
+                <button class="nav-button">&nbsp;</button>
+                <ul class="primary-nav">
+                    <a href="#aboutGetCycled">What is GetCycled?</a>  
+                    <a href="#deposit">Deposit</a>  
+                    <a href="#login">Login</a>  
                 </ul>
+            </div>
+
+
+            <div class="nav fade_element" id="desktop-navbar">  
+                <div class="internalNav">
+                    <a href="#aboutGetCycled">What is GetCycled?</a>  
+                    <a href="#deposit">Deposit</a>  
+                    <a href="#login">Login</a>  
+                </div>
+                <div class="nav" id="menuFade">
+                    <h2 id='logo-badge'>GetCycled</h2>
+                </div>              
+            </div>
+
+
+            <div class="row" style='margin-top:48px;'>
+                <header class="col-lg-12 fade_element" id="banner">
+                    <div id="h1_container">
+                    </div>
+
+                  {% block content %}{% endblock %}
+                </header>
+            </div>
+            <div id="masthead-footer" class="row fade_element" style="">
+                <div class="col-lg-4 col-lg-offset-4 col-md-offset-4 col-md-4 ">
+
+                </div>
+
             </div>
         </div>
     </div>
 
+
+
+
+
+
     <div class="container body-content">
-        {% block content %}{% endblock %}
         <hr />
         <footer>
             <p>&copy; {{ year }} - My Flask Application</p>
         </footer>
     </div>
 
-    <script src="/static/scripts/jquery-1.10.2.js"></script>
+
     <script src="/static/scripts/bootstrap.js"></script>
-    <script src="/static/scripts/respond.js"></script>
     {% block scripts %}{% endblock %}
 
 </body>
