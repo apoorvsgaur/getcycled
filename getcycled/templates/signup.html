@@ -43,6 +43,11 @@
 			$.post( "/signup", { email: $("#email").val(), password: $("#password").val() }, function(data) {
 				$("#message").show();
 				$("#message").text(data);
+				if(data == "Account created.") {
+					setTimeout(function() {
+						window.location.replace('/deposit');
+					}, 1500);
+				}
 				console.log(data);
 			});
 

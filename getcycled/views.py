@@ -10,10 +10,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from getcycled import app, db
 from datetime import datetime
 
-from Models import User
+from Models import User, getUser
 from flask_login import login_required
-
-
 
 
 
@@ -26,13 +24,20 @@ def home():
         year=datetime.now().year
     )
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template(
-        'Login.html',
-        title='Login',
-        year=datetime.now().year
-    )
+    if request.method == 'POST':
+        try:
+            return getUser('xyk', 19400412)
+        except Exception, e:
+            return str(e)
+
+    else:
+        return render_template(
+            'Login.html',
+            title='Login',
+            year=datetime.now().year
+        )
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -43,7 +48,7 @@ def signup():
             db.session.add(u)
             db.session.commit()
             return "Account created."
-            
+
         except Exception, e:
             return "Username already exists."
 
