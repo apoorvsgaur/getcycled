@@ -118,3 +118,112 @@ a {
     margin-bottom:10px;
 }
 
+
+/*********** BREAKPOINT FOR MOBILE NAVIGATION ***********/
+@media (max-width: 650px) {
+    .nav {
+        display:none;
+    }
+    #mobile_nav {
+        display:block;
+    }
+    #poster_credit {
+        display:none;
+    }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 650px) {
+
+    /* Navigation Button
+    -------------------------------------------------------- */
+
+    .nav-button {
+        display: block;
+        position: absolute;
+        top: 7px;
+        left: 7px;
+        width: 50px;
+        height: 35px;
+        background: url('/static/content/menu-icon-large.png') #666666;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 21px, 100%;
+        cursor: pointer;
+        border: 0 none;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+        box-shadow: 0 0 4px rgba(0,0,0,.7) inset;
+        border-radius: 5px;
+        z-index: 999;
+        text-indent: -9999px;
+        margin-top:-50px;
+    }
+    .nav-button:hover { 
+        background-color: rgba(0,0,0,.1); 
+    }
+    .nav-button.open {
+        background: url('../img/close-icon-large.png');
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 21px, 100%;
+    }
+
+    /* Navigation Bar
+    -------------------------------------------------------- */
+
+    body { padding-top: 50px; } 
+
+    .primary-nav {
+        width: 100%;
+        float: none;
+        background-color: rgba(83, 83, 83, 1); /* change the menu color */
+        display: block;
+        height: 50px;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 998;
+        clear: both;
+        margin-top:-50px;
+    }
+    .primary-nav li {
+        display: none;
+        width: 100%;
+        font-family: Arial;
+    }
+    .primary-nav li a {
+        display: block;
+        width: 100%;
+        padding: 10px 5%;
+        font-size: 14px;
+        font-weight: bold;
+        text-shadow: -1px -1px 0 rgba(0,0,0,.15);
+        color: white;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0,0,0,.2);
+        border-top: 1px solid rgba(255,255,255,.1); 
+    }
+    .primary-nav li a:hover {
+        background-color: rgba(0,0,0,.5);
+        border-top-color: transparent;
+    }
+    .primary-nav > li:first-child {
+        border-top: 1px solid rgba(0,0,0,.2);
+    }
+
+    /* Toggle the navigation bar open  */
+
+    .primary-nav.open { 
+        height: auto; 
+        padding-top: 50px;
+        background-color: #5E5E5E;
+    }
+    .primary-nav.open li { 
+        display: block; 
+        text-align: center;
+    }
+
+
+} /* End Mobile Styles */

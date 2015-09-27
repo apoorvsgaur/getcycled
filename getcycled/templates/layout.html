@@ -15,6 +15,16 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+
+            <script>
+            $(document).ready(function() {
+                $(".nav-button").click(function () {
+                    $(".nav-button,.primary-nav").toggleClass("open");
+                });   
+            });     
+        
+        </script>
+
 </head>
 
 <body>
@@ -25,21 +35,21 @@
             <div id="mobile_nav">
                 <button class="nav-button">&nbsp;</button>
                 <ul class="primary-nav">
-                    <a href="#aboutGetCycled">What is GetCycled?</a>  
-                    <a href="#deposit">Deposit</a>  
-                    <a href="#login">Login</a>  
+                    <li><a href="/">What is GetCycled?</a></li> 
+                    <li><a href="/deposit">Deposit</a></li>
+                    <li><a href="/login">Login</a></li>
                 </ul>
             </div>
 
 
             <div class="nav fade_element" id="desktop-navbar">  
                 <div class="internalNav">
-                    <a href="#aboutGetCycled">What is GetCycled?</a>  
-                    <a href="#deposit">Deposit</a>  
-                    <a href="#login">Login</a>  
+                    <a href="/">What is GetCycled?</a>  
+                    <a href="/deposit">Deposit</a>  
+                    <a href="/login">Login</a>  
                 </div>
                 <div class="nav" id="menuFade">
-                    <h2 id='logo-badge'>GetCycled</h2>
+                    <a style='text-decoration:none' href="/"><h2 id='logo-badge'>GetCycled</h2></a>
                 </div>              
             </div>
 

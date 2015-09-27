@@ -27,14 +27,13 @@ def home():
         year=datetime.now().year
     )
 
-@app.route('/contact')
+@app.route('/login')
 def contact():
     return render_template(
-        'contact.html',
-        title='Contact',
-        year=datetime.now().year,
-        message='Your contact page.'
-    )
+        'login.html',
+        title='Login',
+        year=datetime.now().year
+            )
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
