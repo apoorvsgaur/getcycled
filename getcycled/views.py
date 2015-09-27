@@ -20,8 +20,6 @@ from flask_login import login_required
 @app.route('/')
 @app.route('/home')
 def home():
-
-    
     return render_template(
         'index.html',
         title='Home',
@@ -36,6 +34,7 @@ def login():
         year=datetime.now().year
     )
 
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     return render_template(
@@ -43,6 +42,18 @@ def signup():
         title='Signup',
         year=datetime.now().year
     )
+
+@app.route('/newUser', methods=['POST'])
+def newUser():
+    try:
+        u = User('fuckthisshitA', 1223231)
+        db.session.add(u)
+        db.session.commit()
+        return "L"
+
+    except Exception, e:
+        return str(e)
+
 
 @app.route('/about')
 def about():
