@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="content_modal col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-10 col-xs-offset-1">
+        <div>
+            <h3>Deposit</h3>
+            <p>Hi <span id='name'></span>!</p>
+            <br>
+            <p>Balance: <span id='balance'></span></p>
+            <p>Number of bottles: <span id='numBottles'></span></p>
+        </div>
+        <p>
+        </p>
+    </div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#name').text(localStorage.name);
+		$('#balance').text(localStorage.balance);
+		$('#numBottles').text(localStorage.numBottles);
+	});
+
+</script>
+
+{% endblock %}

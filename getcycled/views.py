@@ -2,7 +2,6 @@
 Routes and views for the flask application.
 """
 import os
-
 from flask import Flask, request
 from flask import render_template
 from time import time
@@ -10,9 +9,9 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from getcycled import app, db
 from datetime import datetime
 
-from Models import User, getUser
+from Models import User
 from flask_login import login_required
-
+import json
 
 
 @app.route('/')
@@ -28,7 +27,24 @@ def home():
 def login():
     if request.method == 'POST':
         try:
-            return getUser('xyk', 19400412)
+            input_username = request.values.get("email")
+            input_password = request.values.get("password")
+            response = db.session.query(User.name, User.balance, User.date, User.numBottles).filter_by(name = input_username, pin = input_password).first()
+            
+            if(not response):
+                return '{"success":0, "message":"No Account."}'
+
+            return json.dumps({
+                "success":1,
+                "name":response[0],
+                "balance":response[1],
+                "date":response[2],
+                "numBottles":response[3]
+                })
+
+        except ValueError:
+                return '{"success":0, "message":"Pin must be digits."}'
+
         except Exception, e:
             return str(e)
 
@@ -70,9 +86,7 @@ def about():
     )
 
 @app.route('/deposit')
-@login_required
 def deposit():
-
     
     return render_template(
         'deposit.html',

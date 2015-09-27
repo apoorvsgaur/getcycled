@@ -17,7 +17,7 @@ class User(db.Model):
 	date = db.Column(db.Float, unique = False)
 	numBottles = db.Column(db.Integer, unique = False)
 
-	def __init__(self, name, pin):
+	def __init__(self, name, pin=''):
 		self.name = name
 		self.pin = pin
 		self.balance = 0
@@ -27,18 +27,10 @@ class User(db.Model):
 	def __repr__(self):
 		return '<User %r>' % self.name
 
-	def query_db(query, args=(), one=False):
-	    cur = db.execute(query, args)
-	    rv = [dict((cur.description[idx][0], value)
-	               for idx, value in enumerate(row)) for row in cur.fetchall()]
-	    return (rv[0] if rv else None) if one else rv
+	def getUser(self):
+		return User.query.filter_by(name=self.name).all()
 
-def getUser(username, password):
-	return User.query.filter_by(name=username, pin=password).all()
-
-def addBottle(username):
-	u = User.query.filter_by(name=username).first()
-	u.numBottles+=1
-	print u.numBottles
-
-
+	def addBottle(self):
+		u = User.query.filter_by(name=self.name).first()
+		u.numBottles+=1
+		print u.numBottles

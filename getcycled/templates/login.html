@@ -8,17 +8,50 @@
             <h3>Login to GetCycled</h3>
             <form>
 			  <div class="form-group">
-			    <input type="email" class="form-control" id="email" placeholder="Username">
+			    <input type="text" class="form-control" id="email" placeholder="Username">
 			  </div>
 			  <div class="form-group">
 			    <input type="password" class="form-control" id="password" placeholder="Pin">
 			  </div>
-			  <button type="submit" class="btn btn-success">Login</button>
+			  <p id='message' style='display:none;'></p>
+			  <button type="button" class="btn btn-success">Login</button>
 			</form>
         </div>
         <p>
         </p>
     </div>
 </div>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('button').click(function() {
+			if($("#email").val() == '' || $("#password").val() == '') {
+				$("#message").show();
+				$("#message").text("Information is missing.");
+				return;
+			}
+
+			$.post( "/login", { email: $("#email").val(), password: $("#password").val() }, function(data) {
+				data = JSON.parse(data);
+				$("#message").show();
+				$("#message").text(data.message);
+
+				if(data.success) {
+					localStorage.name = data.name;
+					localStorage.balance = data.balance;
+					localStorage.date = data.date;
+					localStorage.numBottles = data.numBottles;
+					setTimeout(function() {
+						window.location.replace('/deposit');
+					}, 500);
+				}
+			});
+
+		});
+	});
+
+</script>
+
 
 {% endblock %}
