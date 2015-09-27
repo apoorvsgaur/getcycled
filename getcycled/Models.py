@@ -32,3 +32,13 @@ class User(db.Model):
 	    rv = [dict((cur.description[idx][0], value)
 	               for idx, value in enumerate(row)) for row in cur.fetchall()]
 	    return (rv[0] if rv else None) if one else rv
+
+def getUser(username, password):
+	return User.query.filter_by(name=username, pin=password).all()
+
+def addBottle(username):
+	u = User.query.filter_by(name=username).first()
+	u.numBottles+=1
+	print u.numBottles
+
+
