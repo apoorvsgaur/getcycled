@@ -96,15 +96,28 @@ def video():
 
 
 
-
 @app.route('/incrementBottle', methods=['POST'])
 def incrementBottle():
     if request.method == 'POST':
         try:
-            u = db.session.query(User).filter_by(name = 'xyk').first()
+            u = db.session.query(User).filter_by(request.values.get("name")).first()
             u.numBottles += 1
             db.session.commit()
-            db.session.rollback()
+
+        except Exception, e:
+            return str(e)
+
+    else:
+        return
+
+
+@app.route('/incrementBalance', methods=['POST'])
+def incrementBalance():
+    if request.method == 'POST':
+        try:
+            u = db.session.query(User).filter_by(request.values.get("name")).first()
+            u.balance += 1
+            db.session.commit()
 
         except Exception, e:
             return str(e)
