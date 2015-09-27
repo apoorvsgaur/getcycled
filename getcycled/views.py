@@ -50,7 +50,7 @@ def login():
 
     else:
         return render_template(
-            'Login.html',
+            'login.html',
             title='Login',
             year=datetime.now().year
         )
