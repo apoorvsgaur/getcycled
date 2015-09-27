@@ -75,16 +75,6 @@ def signup():
             year=datetime.now().year
         )
 
-
-@app.route('/about')
-def about():
-    return render_template(
-        'about.html',
-        title='About',
-        year=datetime.now().year,
-        message='Your application description page.'
-    )
-
 @app.route('/deposit')
 def deposit():
     
@@ -93,3 +83,31 @@ def deposit():
         title='Deposit',
         year=datetime.now().year
     )
+
+
+@app.route('/video')
+def video():
+    
+    return render_template(
+        'video.html',
+        title='Deposit',
+        year=datetime.now().year
+    )
+
+
+
+
+@app.route('/incrementBottle', methods=['POST'])
+def incrementBottle():
+    if request.method == 'POST':
+        try:
+            u = db.session.query(User).filter_by(name = 'xyk').first()
+            u.numBottles += 1
+            db.session.commit()
+            db.session.rollback()
+
+        except Exception, e:
+            return str(e)
+
+    else:
+        return
