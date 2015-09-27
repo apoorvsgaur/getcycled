@@ -7,7 +7,7 @@ from flask import Flask
 from flask import render_template
 from time import time
 from flask.ext.sqlalchemy import SQLAlchemy
-from getcycled import app
+from getcycled import app, db
 from datetime import datetime
 
 from Models import User
