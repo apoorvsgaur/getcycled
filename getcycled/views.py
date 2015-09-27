@@ -11,6 +11,7 @@ from getcycled import app, db
 from datetime import datetime
 
 from Models import User
+from flask_login import login_required
 
 
 
@@ -27,13 +28,14 @@ def home():
         year=datetime.now().year
     )
 
-@app.route('/login')
+@app.route('/contact')
 def contact():
     return render_template(
-        'login.html',
-        title='Login',
-        year=datetime.now().year
-            )
+        'contact.html',
+        title='Contact',
+        year=datetime.now().year,
+        message='Your contact page.'
+    )
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -50,4 +52,15 @@ def about():
         title='About',
         year=datetime.now().year,
         message='Your application description page.'
+    )
+
+@app.route('/deposit')
+@login_required
+def deposit():
+
+    
+    return render_template(
+        'deposit.html',
+        title='Deposit',
+        year=datetime.now().year
     )
